@@ -1,20 +1,17 @@
 package com.pankov.roadtosenior.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "movie")
-//@Data
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Builder
 public class Movie {
     @Id
