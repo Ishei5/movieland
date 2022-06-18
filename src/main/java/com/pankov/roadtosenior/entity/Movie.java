@@ -15,17 +15,17 @@ import java.time.LocalDate;
 @Builder
 public class Movie {
     @Id
-    @GeneratedValue
+    @GeneratedValue/*(strategy = )*/
     private int id;
-    @Column(name = "name")
+    @Column(name = "name_russian")
     private String nameRussian;
-    @Column(name = "original_name")
+    @Column(name = "name_native")
     private String nameNative;
     @JsonFormat(pattern = "yyyy")
-    @Column(name = "year_release")
+    @Column(name = "year_of_release")
     private LocalDate yearOfRelease;
     private double rating;
     private double price;
-    @Column(name = "poster_url")
+    @Column(name = "picture_path")
     private String picturePath;
 }

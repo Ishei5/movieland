@@ -1,4 +1,4 @@
-package com.pankov.roadtosenior.controller;
+package com.pankov.roadtosenior.web.controller;
 
 import com.pankov.roadtosenior.entity.Movie;
 import com.pankov.roadtosenior.service.MovieService;
@@ -49,7 +49,7 @@ class MovieControllerTest {
                 .getBytes(StandardCharsets.UTF_8);
 
         when(movieService.getAllMovie()).thenReturn(movies);
-        mockMvc.perform(get("/api/v1/movie")
+        mockMvc.perform(get("/movie")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))

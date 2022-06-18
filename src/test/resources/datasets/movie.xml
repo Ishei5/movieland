@@ -1,0 +1,8 @@
+<dataset>
+    <movieland_test.movie id="1" name_russian="Побег из Шоушенка" name_native="The Shawshank Redemption"
+                          description="test" year_of_release="1994-01-01" rating="8.89" price="123.45"
+                          picture_path="https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1._SY209_CR0,0,140,209_.jpg"/>
+    <movieland_test.movie id="2" name_russian="Зеленая миля" name_native="The Green Mile" year_of_release="1999-01-01"
+                          description="test" rating="8.88" price="134.67"
+                          picture_path="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1._SY209_CR0,0,140,209_.jpg"/>
+</dataset>

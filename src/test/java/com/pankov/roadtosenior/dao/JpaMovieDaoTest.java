@@ -1,40 +1,41 @@
 package com.pankov.roadtosenior.dao;
 
+import com.github.database.rider.core.api.connection.ConnectionHolder;
+import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.junit5.DBUnitExtension;
+import com.github.database.rider.junit5.util.EntityManagerProvider;
+import com.pankov.roadtosenior.dao.jpa.JpaMovieDao;
 import com.pankov.roadtosenior.entity.Movie;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
+@ExtendWith(DBUnitExtension.class)
 class JpaMovieDaoTest {
-    private JpaMovieDao jpaMovieDao;
-    private SessionFactory sessionFactory;
-    private Session session;
-    private Query query;
 
-    @BeforeEach
-    public void setUp() {
-        sessionFactory = mock(SessionFactory.class);
-        jpaMovieDao = new JpaMovieDao(sessionFactory);
-        session = mock(Session.class);
-        query = mock(Query.class);
+    private static ConnectionHolder connectionHolder = () -> EntityManagerProvider.instance("junit5-pu").clear().connection();
+    private static JpaMovieDao dao;
+
+    @BeforeAll
+    @DataSet(cleanBefore = true)
+    public static void setUpOne() {
+        EntityManager entityManager = EntityManagerProvider.em();
+        dao = new JpaMovieDao();
+        dao.setEntityManager(entityManager);
     }
 
-    @DisplayName("Get all movies (dao layer)")
     @Test
-    void testGetAllMovies() {
-        when(sessionFactory.getCurrentSession()).thenReturn(session);
-        when(session.createQuery("from Movie")).thenReturn(query);
-        List<Movie> movieList = new ArrayList<>(1);
-        when(query.list()).thenReturn(movieList);
+    @DisplayName("Get all movies (dao layer)")
+    @DataSet(value = {"datasets/movie.xml"})
+    public void testGetAllMovies() {
+        List<Movie> movieList = dao.getAllMovie();
+        assertThat(movieList.size(), equalTo(2));
     }
-
 }
