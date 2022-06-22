@@ -1,4 +1,4 @@
-package com.pankov.roadtosenior.dao;
+package com.pankov.roadtosenior.dao.jpa;
 
 import com.github.database.rider.core.api.connection.ConnectionHolder;
 import com.github.database.rider.core.api.dataset.DataSet;

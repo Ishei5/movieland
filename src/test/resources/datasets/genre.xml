@@ -1,0 +1,17 @@
+<dataset>
+    <movieland_test.genre id="1" name="Драма"/>
+    <movieland_test.genre id="2" name="Криминал"/>
+    <movieland_test.genre id="3" name="Фэнтези"/>
+    <movieland_test.genre id="4" name="Детектив"/>
+    <movieland_test.genre id="5" name="Мелодрама"/>
+    <movieland_test.genre id="6" name="Биография"/>
+    <movieland_test.genre id="7" name="Комедия"/>
+    <movieland_test.genre id="8" name="Фантастика"/>
+    <movieland_test.genre id="9" name="Боевик"/>
+    <movieland_test.genre id="10" name="Триллер"/>
+    <movieland_test.genre id="11" name="Приключения"/>
+    <movieland_test.genre id="12" name="Аниме"/>
+    <movieland_test.genre id="13" name="Мультфильм"/>
+    <movieland_test.genre id="14" name="Семейный"/>
+    <movieland_test.genre id="15" name="Вестерн"/>
+</dataset>
