@@ -133,6 +133,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.database-rider</groupId>
             <artifactId>rider-core</artifactId>
             <version>1.32.3</version>

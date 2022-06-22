@@ -14,7 +14,13 @@ public class MovieServiceDefaultImpl implements MovieService {
 
     private MovieDao movieDao;
 
+    @Override
     public List<Movie> getAllMovie() {
         return movieDao.getAllMovie();
+    }
+
+    @Override
+    public List<Movie> getThreeRandomMovie() {
+        return movieDao.getThreeRandomMovie();
     }
 }

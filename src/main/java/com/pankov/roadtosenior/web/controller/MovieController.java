@@ -18,4 +18,11 @@ public class MovieController {
     public List<Movie> getAllMovie() {
         return movieService.getAllMovie();
     }
+
+    @GetMapping(value = "/movie/random")
+    public List<Movie> getThreeRandomMovie() {
+        return movieService.getThreeRandomMovie();
+    }
+
+
 }

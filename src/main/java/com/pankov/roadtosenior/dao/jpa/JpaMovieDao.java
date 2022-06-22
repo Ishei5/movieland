@@ -20,4 +20,11 @@ public class JpaMovieDao implements MovieDao {
     public List<Movie> getAllMovie() {
         return entityManager.createQuery("from Movie", Movie.class).getResultList();
     }
+
+    @Override
+    public List<Movie> getThreeRandomMovie() {
+        return entityManager.createQuery("from Movie order by rand()", Movie.class)
+                .setMaxResults(3)
+                .getResultList();
+    }
 }
