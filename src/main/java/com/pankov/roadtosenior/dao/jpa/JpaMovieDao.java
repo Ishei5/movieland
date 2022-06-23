@@ -27,4 +27,11 @@ public class JpaMovieDao implements MovieDao {
                 .setMaxResults(3)
                 .getResultList();
     }
+
+    @Override
+    public List<Movie> getMoviesByGenre(int genreId) {
+        return entityManager.createQuery("select m from Movie m join m.genres g where g.id=:genreId ", Movie.class)
+                .setParameter("genreId", genreId)
+                .getResultList();
+    }
 }

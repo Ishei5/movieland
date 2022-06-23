@@ -1,5 +1,6 @@
 package com.pankov.roadtosenior.config;
 
+import org.modelmapper.ModelMapper;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,6 +57,11 @@ public class RootConfig {
         return dataSource;
     }
 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", hbm2ddl);
@@ -64,4 +70,5 @@ public class RootConfig {
 
         return properties;
     }
+
 }

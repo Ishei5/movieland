@@ -34,7 +34,7 @@ class JpaGenreDaoTest {
 
     @Test
     @DisplayName("Get all genres (dao layer)")
-    @DataSet(value = {"datasets/genre.xml"})
+    @DataSet(value = {"datasets/genre.xml"}, disableConstraints = true)
     public void testGetAllGenres() {
         List<Genre> genreList = dao.getAllGenres();
         assertEquals(15, genreList.size());

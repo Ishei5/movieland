@@ -1,6 +1,6 @@
 package com.pankov.roadtosenior.web.controller;
 
-import com.pankov.roadtosenior.entity.Genre;
+import com.pankov.roadtosenior.dto.GenreDTO;
 import com.pankov.roadtosenior.service.GenreService;
 import com.pankov.roadtosenior.service.impl.GenreServiceDefaultImpl;
 import org.junit.jupiter.api.Test;
@@ -21,22 +21,22 @@ public class GenreControllerTest {
 
     private final GenreService genreService = mock(GenreServiceDefaultImpl.class);
     private final MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new GenreController(genreService)).build();
-    private final List<Genre> expectedGenres = List.of(
-            new Genre(1, "Драма"),
-            new Genre(2, "Криминал"),
-            new Genre(3, "Фэнтези"),
-            new Genre(4, "Детектив"),
-            new Genre(5, "Мелодрама"),
-            new Genre(6, "Биография"),
-            new Genre(7, "Комедия"),
-            new Genre(8, "Фантастика"),
-            new Genre(9, "Боевик"),
-            new Genre(10, "Триллер"),
-            new Genre(11, "Приключения"),
-            new Genre(12, "Аниме"),
-            new Genre(13, "Мультфильм"),
-            new Genre(14, "Семейный"),
-            new Genre(15, "Вестерн"));
+    private final List<GenreDTO> expectedGenres = List.of(
+            new GenreDTO(1, "Драма"),
+            new GenreDTO(2, "Криминал"),
+            new GenreDTO(3, "Фэнтези"),
+            new GenreDTO(4, "Детектив"),
+            new GenreDTO(5, "Мелодрама"),
+            new GenreDTO(6, "Биография"),
+            new GenreDTO(7, "Комедия"),
+            new GenreDTO(8, "Фантастика"),
+            new GenreDTO(9, "Боевик"),
+            new GenreDTO(10, "Триллер"),
+            new GenreDTO(11, "Приключения"),
+            new GenreDTO(12, "Аниме"),
+            new GenreDTO(13, "Мультфильм"),
+            new GenreDTO(14, "Семейный"),
+            new GenreDTO(15, "Вестерн"));
 
     @Test
     public void testGetAllGenres() throws Exception {

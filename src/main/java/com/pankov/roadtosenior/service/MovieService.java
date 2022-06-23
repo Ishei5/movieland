@@ -1,11 +1,13 @@
 package com.pankov.roadtosenior.service;
 
-import com.pankov.roadtosenior.entity.Movie;
+import com.pankov.roadtosenior.dto.MovieDTO;
 
 import java.util.List;
 
 public interface MovieService {
-    List<Movie> getAllMovie();
+    List<MovieDTO> getAllMovie();
 
-    List<Movie> getThreeRandomMovie();
+    List<MovieDTO> getThreeRandomMovie();
+
+    List<MovieDTO> getMoviesByGenre(int genreId);
 }

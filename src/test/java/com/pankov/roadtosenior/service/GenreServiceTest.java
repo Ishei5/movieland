@@ -2,9 +2,11 @@ package com.pankov.roadtosenior.service;
 
 import com.pankov.roadtosenior.dao.GenreDao;
 import com.pankov.roadtosenior.dao.jpa.JpaGenreDao;
+import com.pankov.roadtosenior.dto.GenreDTO;
 import com.pankov.roadtosenior.entity.Genre;
 import com.pankov.roadtosenior.service.impl.GenreServiceDefaultImpl;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -31,12 +33,13 @@ public class GenreServiceTest {
             new Genre(15, "Вестерн"));
 
     private final GenreDao genreDao = mock(JpaGenreDao.class);
-    private final GenreService genreService = new GenreServiceDefaultImpl(genreDao);
+    private final ModelMapper modelMapper = new ModelMapper();
+    private final GenreService genreService = new GenreServiceDefaultImpl(genreDao, modelMapper);
 
     @Test
     public void testGetAllGenres() {
         when(genreDao.getAllGenres()).thenReturn(expectedGenres);
-        List<Genre> allGenres = genreService.getAllGenres();
+        List<GenreDTO> allGenres = genreService.getAllGenres();
         assertEquals(15, allGenres.size());
     }
 }

@@ -1,6 +1,6 @@
 package com.pankov.roadtosenior.web.controller;
 
-import com.pankov.roadtosenior.entity.Movie;
+import com.pankov.roadtosenior.dto.MovieDTO;
 import com.pankov.roadtosenior.service.MovieService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class MovieControllerTest {
     private static MockMvc mockMvc;
     private static MovieService movieService;
-    private final Movie firstMovie = Movie.builder()
+    private final MovieDTO firstMovie = MovieDTO.builder()
             .id(1)
             .nameNative("First movie")
             .nameRussian("Первое кино")
@@ -30,7 +30,7 @@ class MovieControllerTest {
             .price(99.8)
             .picturePath("https://picture1.jpg")
             .build();
-    private final Movie secondMovie = Movie.builder()
+    private final MovieDTO secondMovie = MovieDTO.builder()
             .id(2)
             .nameNative("Second movie")
             .nameRussian("Второе кино")
@@ -39,7 +39,7 @@ class MovieControllerTest {
             .price(99.9)
             .picturePath("https://picture2.jpg")
             .build();
-    private final Movie thirdMovie = Movie.builder()
+    private final MovieDTO thirdMovie = MovieDTO.builder()
             .id(3)
             .nameNative("Third movie")
             .nameRussian("Третье кино")
@@ -49,7 +49,7 @@ class MovieControllerTest {
             .picturePath("https://picture3.jpg")
             .build();
 
-    private final List<Movie> movies = List.of(firstMovie, secondMovie, thirdMovie);
+    private final List<MovieDTO> movies = List.of(firstMovie, secondMovie, thirdMovie);
     private final String expectedJSONString =
             "[{\"id\":1,\"nameRussian\":\"Первое кино\",\"nameNative\":\"First movie\",\"yearOfRelease\":\"2022\"," +
             "\"rating\":99.8,\"price\":99.8,\"picturePath\":\"https://picture1.jpg\"}, " +
@@ -90,5 +90,18 @@ class MovieControllerTest {
                 .andExpect(content().json(expectedJSONString));
 
         verify(movieService, times(1)).getThreeRandomMovie();
+    }
+
+    @DisplayName("Get movies by genre id (web layer)")
+    @Test
+    public void testGetMoviesByGenreId() throws Exception {
+        when(movieService.getMoviesByGenre(anyInt())).thenReturn(movies);
+        mockMvc.perform(get("/movie/genre/1")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(content().json(expectedJSONString));
+
+        verify(movieService, times(1)).getMoviesByGenre(anyInt());
     }
 }
