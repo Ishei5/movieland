@@ -18,7 +18,6 @@ import java.util.List;
 @Primary
 @NoArgsConstructor
 @EnableScheduling
-@Slf4j
 public class CacheJpaGenreDao implements GenreDao {
 
     @Autowired
@@ -38,12 +37,10 @@ public class CacheJpaGenreDao implements GenreDao {
     @PostLoad
     void init() {
         cachedGenreList = genreDao.getAllGenres();
-        log.info("Cached genre list");
     }
 
     @Scheduled(fixedRateString = "${fixedRate}")
     private void updateCachedGenreList() {
-        log.info("Genre cache updated");
         init();
     }
 }

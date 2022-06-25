@@ -10,6 +10,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -19,8 +20,9 @@ public class MovieServiceDefaultImpl implements MovieService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<MovieDTO> getAllMovie() {
-        List<Movie> allMovie = movieDao.getAllMovie();
+    public List<MovieDTO> getAllMovie(Map<String,String> params) {
+        List<Movie> allMovie = movieDao.getAllMovie(params);
+
         return modelMapper.map(allMovie, new TypeToken<List<MovieDTO>>() {
         }.getType());
     }
@@ -32,8 +34,8 @@ public class MovieServiceDefaultImpl implements MovieService {
     }
 
     @Override
-    public List<MovieDTO> getMoviesByGenre(int genreId) {
-        List<Movie> moviesByGenre = movieDao.getMoviesByGenre(genreId);
+    public List<MovieDTO> getMoviesByGenre(int genreId, Map<String,String> params) {
+        List<Movie> moviesByGenre = movieDao.getMoviesByGenre(genreId, params);
         return moviesByGenre.stream().map(this::convertToDTO).toList();
     }
 

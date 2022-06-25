@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 
 @Repository
 public class JpaMovieDao implements MovieDao {
@@ -17,8 +19,8 @@ public class JpaMovieDao implements MovieDao {
     private EntityManager entityManager;
 
     @Override
-    public List<Movie> getAllMovie() {
-        return entityManager.createQuery("from Movie", Movie.class).getResultList();
+    public List<Movie> getAllMovie(Map<String,String> params) {
+        return entityManager.createQuery("from Movie m" + createOrderSql(params), Movie.class).getResultList();
     }
 
     @Override
@@ -29,9 +31,22 @@ public class JpaMovieDao implements MovieDao {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(int genreId) {
-        return entityManager.createQuery("select m from Movie m join m.genres g where g.id=:genreId ", Movie.class)
+    public List<Movie> getMoviesByGenre(int genreId, Map<String,String> params) {
+        return entityManager.createQuery("select m from Movie m join m.genres g where g.id=:genreId"
+                        + createOrderSql(params), Movie.class)
                 .setParameter("genreId", genreId)
                 .getResultList();
+    }
+
+    String createOrderSql(Map<String,String> params) {
+        if (params.isEmpty()) {
+            return "";
+        }
+        StringJoiner stringJoiner = new StringJoiner(", ", " order by ", "");
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            stringJoiner.add(entry.getKey() + " " + entry.getValue());
+        }
+
+        return stringJoiner.toString();
     }
 }

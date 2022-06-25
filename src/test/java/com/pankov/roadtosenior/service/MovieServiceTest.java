@@ -10,10 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -56,8 +58,8 @@ class MovieServiceTest {
     @DisplayName("Get all movies (Service layer)")
     @Test
     void testGetAllMovies() {
-        when(movieDao.getAllMovie()).thenReturn(movies);
-        List<MovieDTO> movieList = movieService.getAllMovie();
+        when(movieDao.getAllMovie(Collections.emptyMap())).thenReturn(movies);
+        List<MovieDTO> movieList = movieService.getAllMovie(Collections.emptyMap());
         assertEquals(3, movieList.size());
     }
 
@@ -72,8 +74,8 @@ class MovieServiceTest {
     @DisplayName("Get movies by genre id (Service layer)")
     @Test
     void testGetMoviesById() {
-         when(movieDao.getMoviesByGenre(anyInt())).thenReturn(movies);
-        List<MovieDTO> movieList = movieService.getMoviesByGenre(1);
+         when(movieDao.getMoviesByGenre(anyInt(), anyMap())).thenReturn(movies);
+        List<MovieDTO> movieList = movieService.getMoviesByGenre(anyInt(), anyMap());
         assertEquals(3, movieList.size());
     }
 }
