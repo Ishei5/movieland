@@ -84,6 +84,14 @@
             <version>2.4.5</version>
         </dependency>
 
+        <!--        Logging-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+
+
         <!--        Testing-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -130,6 +138,12 @@
             <groupId>com.github.database-rider</groupId>
             <artifactId>rider-junit5</artifactId>
             <version>1.32.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb.flyway-test-extensions</groupId>
+            <artifactId>flyway-spring-test</artifactId>
+            <version>7.0.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

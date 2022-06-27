@@ -1,0 +1,19 @@
+<configuration>
+    <appender name="MOVIELAND" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>movieLand.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>movieLand-%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <maxFileSize>5MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="DEBUG">
+        <appender-ref ref="MOVIELAND" />
+    </root>
+</configuration>
